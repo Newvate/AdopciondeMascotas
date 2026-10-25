@@ -1,6 +1,6 @@
 # Hogar Fiel — adopción de mascotas
 
-Aplicación web de demostración hecha con Java. Incluye un catálogo de perros y gatos, filtros por tipo, ubicación y edad, ordenamiento, ficha de detalles y formulario de contacto.
+Aplicación web de demostración hecha con Java. Incluye un catálogo de perros y gatos, filtros por tipo, raza, ubicación y edad, ordenamiento, ficha de detalles y formulario de contacto.
 
 ## Requisitos
 
