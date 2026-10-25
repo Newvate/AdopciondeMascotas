@@ -1,6 +1,6 @@
 # Hogar Fiel — adopción de mascotas
 
-Aplicación web de demostración hecha con Java. Incluye un catálogo de perros y gatos, filtros por tipo, raza, ubicación y edad, ordenamiento, ficha de detalles y formulario de contacto.
+Aplicación web de demostración hecha con Java. Incluye un catálogo de perros y gatos con búsqueda por nombre, raza y ubicación, filtros por tipo, raza, ubicación, edad y tamaño, carga progresiva de resultados, estados visuales, favoritos guardados en el navegador, ficha y solicitud de adopción, proceso de adopción, información de donaciones y formulario de voluntariado.
 
 ## Requisitos
 
@@ -19,4 +19,4 @@ mvn compile exec:java
 
 El puerto predeterminado es `8080`; puedes cambiarlo definiendo la variable de entorno `PORT` antes de iniciar la aplicación.
 
-Las imágenes del catálogo se cargan desde Unsplash, por lo que se requiere conexión a internet para mostrarlas. Los datos de las mascotas son ejemplos; el formulario confirma la recepción en el servidor, pero todavía no guarda solicitudes en una base de datos ni envía correos.
+Las imágenes del catálogo se cargan desde Unsplash, por lo que se requiere conexión a internet para mostrarlas. Los datos y estados de las mascotas son ejemplos; los favoritos se guardan en el almacenamiento local del navegador. El panel de apoyo no procesa pagos: solicita al equipo los datos verificados de cuentas/Yape. Los formularios confirman la recepción en el servidor, pero todavía no guardan solicitudes en una base de datos ni envían correos.

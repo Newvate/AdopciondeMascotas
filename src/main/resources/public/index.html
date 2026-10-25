@@ -104,26 +104,98 @@
     .toast{background:#d5ff45;color:#13150b}.modal{background:#000b}.modal-card{background:#151619;border:1px solid #36383c}.modal-body h2{color:#f4f4ef}.modal-body p{color:#a5a7ac}.close{background:#25272a;color:#f1f1ee}.footer{color:#85878c;border-top:1px solid #24262a}
     a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid #ff74b8;outline-offset:3px}
   </style>
+  <style>
+    .toolbar{gap:14px;flex-wrap:wrap}
+    .toolbar-controls{display:flex;align-items:center;justify-content:flex-end;gap:12px;flex:1;min-width:min(100%,340px)}
+    .search-box{display:flex;align-items:center;gap:8px;min-width:170px;max-width:330px;flex:1;padding:0 11px;border:1px solid #36383d;border-radius:9px;background:#1a1b1e;color:#a5a7ac}
+    .search-box input{width:100%;min-width:0;border:0;outline:0;background:transparent;color:#f1f1ed;padding:10px 0;font-size:13px}
+    .search-box input::placeholder{color:#85878d}
+    .search-box:focus-within{border-color:var(--green);box-shadow:0 0 0 3px #d5ff4515}
+    .search-clear{display:grid;place-items:center;width:27px;height:27px;border:0;border-radius:7px;background:transparent;color:#a5a7ac;font-size:18px;cursor:pointer}
+    .search-clear:hover{background:#ffffff12;color:#fff}
+    .favorite-filter{border:1px solid #36383d;border-radius:9px;background:#1a1b1e;color:#c8c9cc;padding:9px 10px;font-size:12px;white-space:nowrap;cursor:pointer;transition:color .2s,border-color .2s,background .2s}
+    .favorite-filter[aria-pressed="true"]{border-color:#d5ff4570;background:#d5ff4518;color:var(--green)}
+    .support-link{border:1px solid #d5ff4570;border-radius:9px;background:#d5ff4518;color:var(--green);padding:9px 13px;font-size:12px;font-weight:700;cursor:pointer;transition:transform .2s,background .2s}
+    .support-link:hover{transform:translateY(-2px);background:#d5ff4528}
+    .filters .field input{background:#1a1b1e;border-color:#36383d;color:#f1f1ed}
+    .card-visual{position:relative;overflow:hidden}
+    .card-visual .photo{height:185px}
+    .pet-status{position:absolute;top:12px;left:12px;padding:6px 10px;border:1px solid #ffffff35;border-radius:20px;color:#fff;font-size:10px;font-weight:800;letter-spacing:.35px;text-transform:uppercase;box-shadow:0 4px 12px #0004}
+    .pet-status.urgent{background:#ef4444}.pet-status.new{background:#0d9488}.pet-status.process{background:#8b5cf6}
+    .favorite-btn{position:absolute;top:11px;right:11px;display:grid;place-items:center;width:38px;height:38px;border:1px solid #ffffff50;border-radius:50%;background:#111318c9;color:white;font-size:19px;cursor:pointer;transition:transform .2s,background .2s,color .2s}
+    .favorite-btn:hover{transform:scale(1.1);background:#111318}
+    .favorite-btn[aria-pressed="true"]{background:#ff5674;color:white;border-color:#ff5674}
+    .process{margin-top:64px}
+    .process-heading{max-width:590px;margin-bottom:22px}
+    .process-heading h2{margin:0 0 9px;font:800 clamp(24px,3vw,32px)/1.2 Manrope,sans-serif;color:#f4f4ef;letter-spacing:-.8px}
+    .process-heading p:last-child{margin:0;color:#a4a6ab;font-size:14px;line-height:1.65}
+    .process-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+    .process-step{position:relative;overflow:hidden;min-height:190px;padding:23px;border:1px solid #292b2f;border-radius:17px;background:linear-gradient(145deg,#151719,#101113);box-shadow:0 12px 30px #0003;transition:transform .25s,border-color .25s,box-shadow .25s}
+    .process-step:hover{transform:translateY(-4px);border-color:#d5ff4560;box-shadow:0 18px 38px #0005}
+    .step-number{display:grid;place-items:center;width:39px;height:39px;margin-bottom:17px;border:1px solid #d5ff4538;border-radius:13px;background:#d5ff4515;color:var(--green);font:800 15px Manrope}
+    .process-step h3{margin:0 0 8px;color:#f4f4ef;font:700 17px Manrope}
+    .process-step p{margin:0;color:#a4a6ab;font-size:13px;line-height:1.65}
+    .application-form{grid-column:1/-1;padding:30px;max-height:min(85vh,760px);overflow:auto}
+    .application-form h2{margin:0 0 7px;color:#f4f4ef;font:800 25px Manrope}
+    .application-form>p{margin:0 0 20px;color:#a5a7ac;font-size:13px;line-height:1.6}
+    .application-fields{display:grid;grid-template-columns:1fr 1fr;gap:0 13px}
+    .application-fields .field{margin-bottom:13px}
+    .application-fields .field input,.application-fields .field select,.application-fields .field textarea{background:#1a1b1e;border-color:#36383d;color:#f1f1ed}
+    .application-fields .field textarea{min-height:90px;resize:vertical}
+    .application-fields .wide{grid-column:1/-1}
+    .application-fields .consent{display:flex;grid-column:1/-1;align-items:flex-start;gap:9px;color:#c2c3c6;font-size:12px;line-height:1.5}
+    .application-fields .consent input{width:auto;margin-top:2px;accent-color:var(--green)}
+    .application-actions{display:flex;align-items:center;gap:12px;margin-top:7px}
+    .back-btn{border:1px solid #36383d;border-radius:9px;background:transparent;color:#d2d3d5;padding:12px 16px;font-weight:700;cursor:pointer}
+    .demo-note{margin-top:16px!important;color:#85878d!important;font-size:11px!important}
+    .load-more-wrap{display:flex;justify-content:center;margin:23px 0 3px}
+    .load-more{border:1px solid #d5ff4570;border-radius:10px;background:#d5ff4518;color:var(--green);padding:12px 20px;font-size:13px;font-weight:700;cursor:pointer;transition:transform .2s,background .2s}
+    .load-more:hover{transform:translateY(-2px);background:#d5ff4528}
+    .load-more:disabled{opacity:.55;cursor:default;transform:none}
+    .support-card{display:block;max-width:760px;padding:30px;max-height:90vh;overflow:auto}
+    .support-card h2{margin:0 0 8px;color:#f4f4ef;font:800 26px Manrope}
+    .support-card>p{margin:0 0 20px;color:#a5a7ac;font-size:13px;line-height:1.6}
+    .support-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+    .support-options{display:grid;gap:11px}
+    .support-option{padding:15px;border:1px solid #292b2f;border-radius:12px;background:#101113}
+    .support-option strong{display:block;margin-bottom:5px;color:#f4f4ef;font:700 14px Manrope}
+    .support-option p{margin:0;color:#a5a7ac;font-size:12px;line-height:1.55}
+    .volunteer-form{display:grid;gap:11px}
+    .volunteer-form h3{margin:0 0 2px;color:#f4f4ef;font:700 17px Manrope}
+    .volunteer-form label{display:grid;gap:6px;color:#c2c3c6;font-size:12px;font-weight:600}
+    .volunteer-form input,.volunteer-form select{width:100%;min-width:0;border:1px solid #36383d;border-radius:9px;background:#1a1b1e;color:#f1f1ed;padding:10px 11px;font:inherit;font-size:13px}
+    .volunteer-form .adopt-btn{justify-self:start}
+    .support-note{margin:14px 0 0!important;color:#85878d!important;font-size:11px!important}
+    [hidden]{display:none!important}
+    @media(max-width:900px){.process-grid{grid-template-columns:1fr}.process-step{min-height:0}}
+    @media(max-width:760px){.toolbar-controls{justify-content:stretch;min-width:100%}.search-box{max-width:none}.filters{position:static}.process{margin-top:45px}.application-form{padding:25px 20px}.support-card{padding:25px 20px}}
+    @media(max-width:760px){.sidebar{gap:6px;padding-left:12px;padding-right:12px}.brand{gap:7px}.nav{min-width:0;flex-wrap:wrap;justify-content:flex-end;gap:0}.nav a{gap:0;padding:6px}}
+    @media(max-width:520px){.support-grid{grid-template-columns:1fr}.support-card h2{font-size:23px}}
+    @media(max-width:460px){.toolbar-controls{flex-wrap:wrap}.search-box{flex-basis:100%;max-width:none}.toolbar-controls .sort,.favorite-filter{flex:1}.process-step{padding:19px}.application-fields{grid-template-columns:1fr}.application-fields .wide,.application-fields .consent{grid-column:auto}.application-actions{align-items:stretch;flex-direction:column}.application-actions button,.volunteer-form .adopt-btn{width:100%}.support-card{padding:23px 17px}}
+    @media(prefers-reduced-motion:reduce){.card,.favorite-btn,.process-step,.support-link,.load-more{animation:none!important;transition:none!important}.card:hover,.process-step:hover,.support-link:hover,.load-more:hover{transform:none}}
+  </style>
 </head>
 <body>
 <div class="app">
   <aside class="sidebar">
     <a class="brand" href="#inicio"><span class="brand-mark">🐾</span><span>Hogar <em>Fiel</em></span></a>
-    <nav class="nav" aria-label="Navegación"><a class="active" href="#inicio"><span class="ico">⌂</span>Inicio</a><a href="#mascotas"><span class="ico">🐾</span>Mascotas</a><a href="#contacto"><span class="ico">✉</span>Contacto</a></nav>
+    <nav class="nav" aria-label="Navegación"><a class="active" href="#inicio"><span class="ico">⌂</span>Inicio</a><a href="#mascotas"><span class="ico">🐾</span>Mascotas</a><a href="#proceso"><span class="ico">✓</span>Proceso</a><a href="#contacto"><span class="ico">✉</span>Contacto</a><a href="#" id="supportLink"><span class="ico">♡</span>Apóyanos</a></nav>
     <div class="side-note"><span>💚</span><b>Adoptar cambia vidas</b>Un hogar para ellos también puede ser un nuevo comienzo para ti.</div>
   </aside>
   <main class="main" id="inicio">
     <header class="topbar"><div class="crumb">Hogar Fiel <span> / </span> <b>Adopciones</b></div><div class="top-actions"><span class="welcome">Un amigo te está esperando</span><span class="avatar">♥</span></div></header>
     <div class="content">
       <section class="hero" id="mascotas"><div><p class="eyebrow">Encuentra a tu compañero</p><h1>Amor que busca hogar.</h1><p class="sub">Conoce a quienes esperan una familia como la tuya.</p></div><div class="stats"><strong id="availableCount">6</strong>amigos disponibles</div></section>
-      <div class="layout"><section><div class="toolbar"><div class="count">Mostrando <b id="resultCount">6 mascotas</b></div><select class="sort" id="sort" aria-label="Ordenar mascotas"><option value="default">Ordenar: recomendados</option><option value="name">Nombre: A–Z</option><option value="young">Edad: menor primero</option></select></div><div class="cards" id="cards" aria-live="polite"></div></section>
-        <aside class="filters"><div class="filter-heading"><h2>Filtrar mascotas</h2><span>♡ Encuentra</span></div><div class="field"><label for="type">Tipo de mascota</label><select id="type"><option value="">Todos</option><option>Perro</option><option>Gato</option></select></div><div class="field"><label for="breed">Raza</label><select id="breed"><option value="">Todas las razas</option></select></div><div class="field"><label for="location">Ubicación</label><select id="location"><option value="">Todas</option><option>Lima</option><option>Huánuco</option></select></div><div class="field"><label for="age">Edad</label><select id="age"><option value="">Todas las edades</option><option value="baby">Menos de 1 año</option><option value="young">1–3 años</option><option value="adult">Más de 3 años</option></select></div><button class="reset" id="reset">Limpiar filtros</button></aside>
+      <div class="layout"><section><div class="toolbar"><div class="count">Mostrando <b id="resultCount">6 mascotas</b></div><div class="toolbar-controls"><label class="search-box"><span aria-hidden="true">⌕</span><input id="search" type="search" placeholder="Buscar nombre, raza o ubicación…" aria-label="Buscar por nombre, raza o ubicación"><button class="search-clear" id="clearSearch" type="button" aria-label="Limpiar búsqueda" title="Limpiar búsqueda" hidden>×</button></label><select class="sort" id="sort" aria-label="Ordenar mascotas"><option value="default">Ordenar: recomendados</option><option value="name">Nombre: A–Z</option><option value="young">Edad: menor primero</option></select></div></div><div class="cards" id="cards" aria-live="polite" tabindex="-1"></div><div class="load-more-wrap" id="loadMoreWrap" hidden><button class="load-more" id="loadMore" type="button">Cargar más mascotas</button></div></section>
+        <aside class="filters"><div class="filter-heading"><h2>Filtrar mascotas</h2><button class="favorite-filter" id="favoriteFilter" type="button" aria-pressed="false">♡ Favoritos <span id="favoriteCount">0</span></button></div><div class="field"><label for="type">Tipo de mascota</label><select id="type"><option value="">Todos</option><option>Perro</option><option>Gato</option></select></div><div class="field"><label for="breed">Raza</label><select id="breed"><option value="">Todas las razas</option></select></div><div class="field"><label for="location">Ubicación</label><select id="location"><option value="">Todas</option><option>Lima</option><option>Huánuco</option></select></div><div class="field"><label for="age">Edad</label><select id="age"><option value="">Todas las edades</option><option value="baby">Menos de 1 año</option><option value="young">1–3 años</option><option value="adult">Más de 3 años</option></select></div><div class="field"><label for="size">Tamaño</label><select id="size"><option value="">Todos los tamaños</option><option>Pequeño</option><option>Mediano</option><option>Grande</option></select></div><button class="reset" id="reset">Limpiar filtros</button></aside>
       </div>
+      <section class="process" id="proceso" aria-labelledby="processTitle"><div class="process-heading"><p class="eyebrow">Un camino lleno de cariño</p><h2 id="processTitle">Así comienza una nueva historia</h2><p>Te acompañamos en cada etapa para encontrar el hogar ideal para tu compañero.</p></div><div class="process-grid"><article class="process-step"><span class="step-number">01</span><h3>Requisitos</h3><p>Cuéntanos sobre tu hogar, tu rutina y la experiencia que tienes cuidando mascotas. Lo más importante es ofrecer un entorno seguro y mucho cariño.</p></article><article class="process-step"><span class="step-number">02</span><h3>Entrevista</h3><p>Conversaremos contigo para conocerte mejor y responder tus dudas sobre la personalidad y las necesidades de la mascota.</p></article><article class="process-step"><span class="step-number">03</span><h3>Aprobación</h3><p>Revisamos juntos que sea una buena coincidencia. Si todo está listo, coordinamos los siguientes pasos para su llegada a casa.</p></article></div></section>
       <section class="contact" id="contacto"><div><p class="eyebrow">¿Te interesa adoptar?</p><h2>Hablemos de un nuevo comienzo.</h2><p>Déjanos tus datos y cuéntanos qué mascota te robó el corazón. Nuestro equipo te orientará en cada paso.</p></div><form class="contact-form" id="contactForm"><input name="nombre" placeholder="Tu nombre" required aria-label="Tu nombre"><input name="correo" type="email" placeholder="Correo electrónico" required aria-label="Correo electrónico"><textarea name="mensaje" placeholder="Cuéntanos a quién te gustaría conocer" required aria-label="Mensaje"></textarea><button type="submit">Enviar mensaje&nbsp; →</button></form></section>
     </div><footer class="footer">Hecho con cariño para que cada patita encuentre su hogar. © Hogar Fiel 2026</footer>
   </main>
 </div>
-<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalName"><article class="modal-card"><button class="close" id="closeModal" aria-label="Cerrar">×</button><img id="modalImage" alt=""><div class="modal-body"><p class="eyebrow">Conoce a tu nuevo amigo</p><h2 id="modalName"></h2><div class="meta modal-tags" id="modalTags"></div><p id="modalDescription"></p><button class="adopt-btn" id="adoptBtn">Quiero conocerle&nbsp; →</button></div></article></div><div class="toast" id="toast" role="status"></div>
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalName"><article class="modal-card"><button class="close" id="closeModal" aria-label="Cerrar">×</button><img id="modalImage" alt=""><div class="modal-body" id="petDetails"><p class="eyebrow">Conoce a tu nuevo amigo</p><h2 id="modalName"></h2><div class="meta modal-tags" id="modalTags"></div><p id="modalDescription"></p><button class="adopt-btn" id="adoptBtn">Quiero postular&nbsp; →</button></div><form class="application-form" id="adoptionForm" hidden><p class="eyebrow">Solicitud de adopción</p><h2 id="applicationTitle">Cuéntanos sobre ti</h2><p>Completa tus datos para iniciar tu postulación.</p><div class="application-fields"><div class="field"><label for="appName">Nombre completo</label><input id="appName" name="nombre" autocomplete="name" minlength="2" maxlength="100" required></div><div class="field"><label for="appEmail">Correo electrónico</label><input id="appEmail" name="correo" type="email" autocomplete="email" maxlength="150" required></div><div class="field"><label for="appPhone">Teléfono</label><input id="appPhone" name="telefono" type="tel" autocomplete="tel" minlength="7" maxlength="16" pattern="\+?[0-9]{7,15}" title="Usa entre 7 y 15 dígitos, con un + opcional al inicio." required></div><div class="field"><label for="appHome">Tipo de vivienda</label><select id="appHome" name="vivienda" required><option value="">Selecciona una opción</option><option>Casa</option><option>Departamento</option><option>Otro</option></select></div><div class="field wide"><label for="appExperience">¿Cómo sería el hogar que le ofrecerías?</label><textarea id="appExperience" name="experiencia" minlength="10" maxlength="1000" required></textarea></div><label class="consent"><input type="checkbox" name="consentimiento" value="Sí" required><span>Confirmo que los datos son correctos y acepto que me contacten sobre esta postulación.</span></label></div><div class="application-actions"><button class="adopt-btn" type="submit">Enviar postulación&nbsp; →</button><button class="back-btn" id="backToDetails" type="button">Volver a los detalles</button></div><p class="demo-note">Esta es una solicitud de demostración: la aplicación aún no guarda postulaciones de forma permanente.</p></form></article></div><div class="toast" id="toast" role="status"></div>
+<div class="modal" id="supportModal" role="dialog" aria-modal="true" aria-labelledby="supportTitle" aria-hidden="true"><article class="modal-card support-card"><button class="close" id="closeSupport" aria-label="Cerrar">×</button><p class="eyebrow">Cada ayuda cuenta</p><h2 id="supportTitle">Apóyanos a cambiar vidas</h2><p>Puedes contribuir con recursos o sumarte al equipo. Coordinaremos contigo para que tu ayuda llegue de forma segura.</p><div class="support-grid"><div class="support-options"><div class="support-option"><strong>🥣 Donar alimento</strong><p>Ayúdanos a cubrir las comidas y necesidades diarias de nuestras mascotas.</p></div><div class="support-option"><strong>💚 Apadrinar</strong><p>Contribuye con los cuidados y gastos de una mascota mientras encuentra hogar.</p></div><div class="support-option"><strong>📲 Cuentas / Yape</strong><p>Solicita los datos oficiales al equipo antes de realizar cualquier transferencia.</p></div></div><form class="volunteer-form" id="volunteerForm"><h3>Quiero ser voluntario/a</h3><label for="volunteerName">Nombre completo<input id="volunteerName" name="nombre" autocomplete="name" minlength="2" maxlength="100" required></label><label for="volunteerEmail">Correo electrónico<input id="volunteerEmail" name="correo" type="email" autocomplete="email" maxlength="150" required></label><label for="volunteerInterest">¿Cómo te gustaría ayudar?<select id="volunteerInterest" name="interes" required><option value="">Selecciona una opción</option><option>Apoyo en jornadas de adopción</option><option>Hogar temporal</option><option>Traslados y logística</option><option>Donaciones y difusión</option></select></label><button class="adopt-btn" type="submit">Enviar mis datos&nbsp; →</button></form></div><p class="support-note">Las donaciones y solicitudes de voluntariado se coordinan directamente; esta demo no procesa pagos ni registra datos permanentemente.</p></article></div>
 <script>
   const fallbackPets = [
     {id:1,nombre:'Max',tipo:'Perro',raza:'Labrador Retriever',edad:'2 años',edadMeses:24,ubicacion:'Lima',sexo:'Macho',descripcion:'Cariñoso, juguetón y listo para acompañarte en todas tus aventuras.',imagen:'https://images.unsplash.com/photo-1552053831-71594a27632d?auto=format&fit=crop&w=900&q=85'},
@@ -138,33 +210,108 @@
     {id:10,nombre:'Coco',tipo:'Perro',raza:'Poodle',edad:'6 meses',edadMeses:6,ubicacion:'Huánuco',sexo:'Macho',descripcion:'Un cachorro juguetón y sociable, listo para conocer su nuevo hogar.',imagen:'https://images.unsplash.com/photo-1517849845537-4d257902454a?auto=format&fit=crop&w=900&q=85'},
     {id:11,nombre:'Loki',tipo:'Perro',raza:'Husky siberiano',edad:'4 años',edadMeses:48,ubicacion:'Lima',sexo:'Macho',descripcion:'Activo y amistoso, será feliz con una familia que disfrute salir a pasear.',imagen:'https://images.unsplash.com/photo-1543466835-00a7907e9de1?auto=format&fit=crop&w=900&q=85'}
   ];
-  let pets = fallbackPets;
+  const fallbackPetSizes = {1:'Mediano',2:'Pequeño',3:'Grande',4:'Pequeño',5:'Mediano',6:'Mediano',7:'Mediano',8:'Pequeño',9:'Grande',10:'Pequeño',11:'Grande'};
+  let pets = fallbackPets.map(p=>({...p,tamano:p.tamano||fallbackPetSizes[p.id]}));
   const $ = s => document.querySelector(s), cards = $('#cards');
   const escapeHtml = value => String(value).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  let favoriteIds = new Set(), favoritesOnly = false, currentPet = null, lastFocusedElement = null, supportLastFocusedElement = null, visiblePetCount = 6;
+  const modal = $('#modal'), supportModal = $('#supportModal'), petDetails = $('#petDetails'), applicationForm = $('#adoptionForm');
+  const petStatuses = {1:{label:'Nuevo',className:'new'},3:{label:'Urgente',className:'urgent'},5:{label:'En proceso',className:'process'}};
+  let toastTimer;
+  function toast(message){const t=$('#toast');t.textContent=message;t.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>t.classList.remove('show'),3800)}
+  try{
+    const storedFavorites=JSON.parse(localStorage.getItem('hogarfiel:favoritos')||'[]');
+    if(!Array.isArray(storedFavorites))throw new Error('El formato de favoritos no es válido.');
+    favoriteIds=new Set(storedFavorites.map(Number).filter(Number.isInteger));
+  }catch(error){toast('No pudimos cargar tus favoritos guardados en este navegador.');}
+  function saveFavorites(){
+    try{localStorage.setItem('hogarfiel:favoritos',JSON.stringify([...favoriteIds]));return true;}
+    catch(error){toast('No pudimos guardar tus favoritos en este navegador.');return false;}
+  }
+  function updateFavoriteFilter(){
+    $('#favoriteCount').textContent=favoriteIds.size;
+    $('#favoriteFilter').setAttribute('aria-pressed',String(favoritesOnly));
+    $('#favoriteFilter').firstChild.textContent=favoritesOnly?'♥ Favoritos ':'♡ Favoritos ';
+  }
   function updateBreedOptions(){
     const type=$('#type').value, breeds=[...new Set(pets.filter(p=>!type||p.tipo===type).map(p=>p.raza).filter(Boolean))].sort((a,b)=>a.localeCompare(b,'es'));
     $('#breed').innerHTML='<option value="">Todas las razas</option>'+breeds.map(raza=>`<option value="${escapeHtml(raza)}">${escapeHtml(raza)}</option>`).join('');
   }
   function render(){
-    const type=$('#type').value, breed=$('#breed').value, location=$('#location').value, age=$('#age').value;
-    let shown=pets.filter(p=>(!type||p.tipo===type)&&(!breed||p.raza===breed)&&(!location||p.ubicacion===location)&&(!age||(age==='baby'?p.edadMeses<12:age==='young'?p.edadMeses>=12&&p.edadMeses<=36:p.edadMeses>36)));
+    const type=$('#type').value, breed=$('#breed').value, location=$('#location').value, age=$('#age').value, size=$('#size').value, search=$('#search').value.trim().toLocaleLowerCase('es');
+    const normalize=value=>String(value).normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLocaleLowerCase('es');
+    let shown=pets.filter(p=>(!type||p.tipo===type)&&(!breed||p.raza===breed)&&(!location||p.ubicacion===location)&&(!size||p.tamano===size)&&(!search||[p.nombre,p.raza,p.ubicacion].some(value=>normalize(value||'').includes(normalize(search))))&&(!favoritesOnly||favoriteIds.has(p.id))&&(!age||(age==='baby'?p.edadMeses<12:age==='young'?p.edadMeses>=12&&p.edadMeses<=36:p.edadMeses>36)));
     if($('#sort').value==='name') shown.sort((a,b)=>a.nombre.localeCompare(b.nombre,'es'));
     if($('#sort').value==='young') shown.sort((a,b)=>a.edadMeses-b.edadMeses);
-    $('#resultCount').textContent=`${shown.length} ${shown.length===1?'mascota':'mascotas'}`;
+    const visible=shown.slice(0,visiblePetCount);
+    $('#resultCount').textContent=`${visible.length}${visible.length<shown.length?` de ${shown.length}`:''} ${shown.length===1?'mascota':'mascotas'}`;
     $('#availableCount').textContent=pets.length;
-    if(!shown.length){cards.innerHTML='<div class="empty"><strong>No encontramos mascotas con esos filtros</strong>Prueba cambiando algún criterio para ver más amigos.</div>';return;}
-    cards.innerHTML=shown.map(p=>`<article class="card"><img class="photo" src="${escapeHtml(p.imagen)}" alt="${escapeHtml(p.nombre)}, ${escapeHtml(p.tipo.toLowerCase())} en adopción" loading="lazy"><div class="card-info"><div class="card-name"><h3>${escapeHtml(p.nombre)}</h3><span class="gender">${p.sexo==='Hembra'?'♀':'♂'}</span></div><div class="meta"><span class="tag tag-type">${p.tipo==='Perro'?'🐶':'🐱'} ${escapeHtml(p.tipo)}</span><span class="tag tag-breed">${escapeHtml(p.raza||'Raza no especificada')}</span><span class="tag tag-age">🎂 ${escapeHtml(p.edad)}</span></div><div class="card-bottom"><span class="tag tag-city">📍 ${escapeHtml(p.ubicacion)}</span><button class="detail-btn" data-id="${p.id}">Ver detalles&nbsp; ↗</button></div></div></article>`).join('');
+    updateFavoriteFilter();
+    $('#loadMoreWrap').hidden=visible.length>=shown.length;
+    if(!shown.length){cards.innerHTML='<div class="empty"><strong>No encontramos mascotas con esos filtros</strong>Prueba cambiando algún criterio o revisa tus favoritos.</div>';return;}
+    cards.innerHTML=visible.map(p=>{const status=petStatuses[p.id];return `<article class="card"><div class="card-visual"><img class="photo" src="${escapeHtml(p.imagen)}" alt="${escapeHtml(p.nombre)}, ${escapeHtml(p.tipo.toLowerCase())} en adopción" loading="lazy">${status?`<span class="pet-status ${status.className}">${status.label}</span>`:''}<button class="favorite-btn" type="button" data-favorite="${p.id}" aria-label="${favoriteIds.has(p.id)?'Quitar':'Agregar'} ${escapeHtml(p.nombre)} ${favoriteIds.has(p.id)?'de':'a'} favoritos" aria-pressed="${favoriteIds.has(p.id)}">♥</button></div><div class="card-info"><div class="card-name"><h3>${escapeHtml(p.nombre)}</h3><span class="gender">${p.sexo==='Hembra'?'♀':'♂'}</span></div><div class="meta"><span class="tag tag-type">${p.tipo==='Perro'?'🐶':'🐱'} ${escapeHtml(p.tipo)}</span><span class="tag tag-breed">${escapeHtml(p.raza||'Raza no especificada')}</span><span class="tag tag-age">🎂 ${escapeHtml(p.edad)}</span><span class="tag">${escapeHtml(p.tamano||'Tamaño no especificado')}</span></div><div class="card-bottom"><span class="tag tag-city">📍 ${escapeHtml(p.ubicacion)}</span><button class="detail-btn" data-id="${p.id}">Ver detalles&nbsp; ↗</button></div></div></article>`;}).join('');
   }
-  function openPet(id){const p=pets.find(x=>x.id===Number(id));if(!p)return;$('#modalImage').src=p.imagen;$('#modalImage').alt=p.nombre;$('#modalName').textContent=p.nombre;$('#modalDescription').textContent=p.descripcion;$('#modalTags').innerHTML=[p.tipo,p.raza,p.edad,p.ubicacion,p.sexo].filter(Boolean).map(x=>`<span class="tag">${escapeHtml(x)}</span>`).join('');$('#modal').classList.add('open');$('#closeModal').focus();}
-  cards.addEventListener('click',e=>{const b=e.target.closest('[data-id]');if(b)openPet(b.dataset.id)});
-  $('#type').addEventListener('change',()=>{updateBreedOptions();render()});
-  ['breed','location','age','sort'].forEach(id=>$('#'+id).addEventListener('change',render));
-  $('#reset').addEventListener('click',()=>{['type','location','age'].forEach(id=>$('#'+id).value='');updateBreedOptions();$('#sort').value='default';render()});
-  $('#closeModal').addEventListener('click',()=>$('#modal').classList.remove('open'));
-  $('#modal').addEventListener('click',e=>{if(e.target===$('#modal'))$('#modal').classList.remove('open')});
-  document.addEventListener('keydown',e=>{if(e.key==='Escape')$('#modal').classList.remove('open')});
-  $('#adoptBtn').addEventListener('click',()=>{$('#modal').classList.remove('open');$('#contacto').scrollIntoView({behavior:'smooth'});$('#contactForm [name=mensaje]').focus()});
-  let toastTimer;function toast(message){const t=$('#toast');t.textContent=message;t.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>t.classList.remove('show'),3800)}
+  function openPet(id){
+    const p=pets.find(x=>x.id===Number(id));if(!p)return;
+    currentPet=p;lastFocusedElement=document.activeElement;applicationForm.hidden=true;petDetails.hidden=false;$('#modalImage').hidden=false;modal.setAttribute('aria-labelledby','modalName');
+    $('#modalImage').src=p.imagen;$('#modalImage').alt=p.nombre;$('#modalName').textContent=p.nombre;$('#modalDescription').textContent=p.descripcion;$('#modalTags').innerHTML=[p.tipo,p.raza,p.edad,p.tamano,p.ubicacion,p.sexo].filter(Boolean).map(x=>`<span class="tag">${escapeHtml(x)}</span>`).join('');
+    modal.classList.add('open');$('#closeModal').focus();
+  }
+  function closePetModal(){
+    modal.classList.remove('open');applicationForm.hidden=true;petDetails.hidden=false;$('#modalImage').hidden=false;modal.setAttribute('aria-labelledby','modalName');
+    if(lastFocusedElement&&lastFocusedElement.isConnected)lastFocusedElement.focus();
+  }
+  cards.addEventListener('click',e=>{
+    const favorite=e.target.closest('[data-favorite]');
+    if(favorite){const id=Number(favorite.dataset.favorite);favoriteIds.has(id)?favoriteIds.delete(id):favoriteIds.add(id);saveFavorites();render();return;}
+    const detail=e.target.closest('[data-id]');if(detail)openPet(detail.dataset.id);
+  });
+  $('#loadMore').addEventListener('click',()=>{visiblePetCount+=6;render()});
+  $('#type').addEventListener('change',()=>{visiblePetCount=6;updateBreedOptions();render()});
+  ['breed','location','age','size','sort'].forEach(id=>$('#'+id).addEventListener('change',()=>{visiblePetCount=6;render()}));
+  $('#search').addEventListener('input',()=>{visiblePetCount=6;$('#clearSearch').hidden=!$('#search').value;render()});
+  $('#clearSearch').addEventListener('click',()=>{$('#search').value='';$('#clearSearch').hidden=true;visiblePetCount=6;render();$('#search').focus()});
+  $('#favoriteFilter').addEventListener('click',e=>{favoritesOnly=!favoritesOnly;visiblePetCount=6;e.currentTarget.setAttribute('aria-pressed',String(favoritesOnly));render()});
+  $('#reset').addEventListener('click',()=>{['type','location','age','size'].forEach(id=>$('#'+id).value='');$('#search').value='';$('#clearSearch').hidden=true;favoritesOnly=false;visiblePetCount=6;updateBreedOptions();$('#sort').value='default';render()});
+  $('#closeModal').addEventListener('click',closePetModal);
+  modal.addEventListener('click',e=>{if(e.target===modal)closePetModal()});
+  function openSupportModal(){
+    supportLastFocusedElement=document.activeElement;supportModal.classList.add('open');supportModal.setAttribute('aria-hidden','false');$('#closeSupport').focus();
+  }
+  function closeSupportModal(){
+    supportModal.classList.remove('open');supportModal.setAttribute('aria-hidden','true');
+    if(supportLastFocusedElement&&supportLastFocusedElement.isConnected)supportLastFocusedElement.focus();
+  }
+  $('#supportLink').addEventListener('click',e=>{e.preventDefault();openSupportModal()});
+  $('#closeSupport').addEventListener('click',closeSupportModal);
+  supportModal.addEventListener('click',e=>{if(e.target===supportModal)closeSupportModal()});
+  document.addEventListener('keydown',e=>{
+    if(e.key==='Escape'&&modal.classList.contains('open'))closePetModal();
+    if(e.key==='Escape'&&supportModal.classList.contains('open'))closeSupportModal();
+  });
+  $('#adoptBtn').addEventListener('click',()=>{if(!currentPet)return;$('#applicationTitle').textContent=`Postula para adoptar a ${currentPet.nombre}`;petDetails.hidden=true;$('#modalImage').hidden=true;applicationForm.hidden=false;modal.setAttribute('aria-labelledby','applicationTitle');$('#appName').focus()});
+  $('#backToDetails').addEventListener('click',()=>{applicationForm.hidden=true;petDetails.hidden=false;$('#modalImage').hidden=false;modal.setAttribute('aria-labelledby','modalName');$('#adoptBtn').focus()});
+  applicationForm.addEventListener('submit',async e=>{
+    e.preventDefault();if(!currentPet||!applicationForm.reportValidity())return;
+    const submitButton=applicationForm.querySelector('[type="submit"]'),data=Object.fromEntries(new FormData(applicationForm));data.mascota=currentPet.nombre;submitButton.disabled=true;
+    try{
+      const response=await fetch('/api/contacto',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)}),result=await response.json();
+      if(!response.ok)throw new Error(result.mensaje||'No se pudo enviar la postulación.');
+      applicationForm.reset();closePetModal();toast(result.mensaje);
+    }catch(error){toast('No pudimos enviar la postulación. Comprueba la conexión e inténtalo de nuevo.');}
+    finally{submitButton.disabled=false;}
+  });
+  $('#volunteerForm').addEventListener('submit',async e=>{
+    e.preventDefault();const form=e.currentTarget;if(!form.reportValidity())return;
+    const submitButton=form.querySelector('[type="submit"]'),data=Object.fromEntries(new FormData(form));
+    data.mensaje=`Solicitud de voluntariado: ${data.interes}`;delete data.interes;submitButton.disabled=true;
+    try{
+      const response=await fetch('/api/contacto',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)}),result=await response.json();
+      if(!response.ok)throw new Error(result.mensaje||'No se pudo enviar la solicitud.');
+      form.reset();closeSupportModal();toast(result.mensaje);
+    }catch(error){toast('No pudimos enviar tus datos. Comprueba la conexión e inténtalo de nuevo.');}
+    finally{submitButton.disabled=false;}
+  });
   $('#contactForm').addEventListener('submit',async e=>{e.preventDefault();const data=Object.fromEntries(new FormData(e.currentTarget));try{const response=await fetch('/api/contacto',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)});const result=await response.json();if(!response.ok)throw new Error(result.mensaje);toast(result.mensaje);e.currentTarget.reset()}catch(err){toast('No pudimos enviar el mensaje. Comprueba la conexión e inténtalo de nuevo.')}});
   fetch('/api/mascotas').then(r=>r.ok?r.json():Promise.reject()).then(data=>{if(Array.isArray(data)){pets=data;updateBreedOptions();render()}}).catch(()=>{updateBreedOptions();render()});
   updateBreedOptions();
