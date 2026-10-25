@@ -55,7 +55,13 @@
         <button class="filter-chip selected" data-filter="all" aria-pressed="true">Todos <span>04</span></button>
         <button class="filter-chip" data-filter="perro" aria-pressed="false">🐶 Perros</button>
         <button class="filter-chip" data-filter="gato" aria-pressed="false">🐱 Gatos</button>
-        <label class="search-box"><span aria-hidden="true">⌕</span><input id="pet-search" type="search" placeholder="Buscar por nombre o raza" aria-label="Buscar por nombre o raza"></label>
+      </div>
+      <div class="catalog-toolbar">
+        <p class="results-label">Mostrando <b id="results-count">0 mascotas</b></p>
+        <div class="toolbar-controls">
+          <label class="search-box"><span aria-hidden="true">⌕</span><input id="pet-search" type="search" placeholder="Buscar nombre, raza o ubicación…" aria-label="Buscar por nombre, raza o ubicación"><button class="search-clear" id="clear-search" type="button" aria-label="Limpiar búsqueda" title="Limpiar búsqueda" hidden>×</button></label>
+          <select class="sort-select" id="pet-sort" aria-label="Ordenar mascotas"><option value="recommended">Ordenar: recomendados</option><option value="name">Nombre: A–Z</option><option value="young">Edad: menor primero</option></select>
+        </div>
       </div>
       <div class="advanced-filters" aria-label="Más filtros">
         <label>Raza<select id="breed-filter"><option value="">Todas las razas</option></select></label>
@@ -64,7 +70,6 @@
         <label>Tamaño<select id="size-filter"><option value="">Todos los tamaños</option></select></label>
         <label class="favorites-toggle"><input id="favorites-only" type="checkbox"> Solo favoritos</label>
       </div>
-      <p class="catalog-status" id="catalog-status" role="status">Cargando mascotas…</p>
       <div class="pet-grid" id="pet-grid" aria-live="polite"></div>
       <p class="no-results" id="no-results" hidden>No encontramos coincidencias. Prueba con otro nombre o filtro.</p>
       <div class="more-row"><p>¿No encontraste a tu compañero?<br><span>Hay más narices esperando conocerte.</span></p><a class="button button-outline" href="#proceso">Cuéntame cómo adoptar <span>↗</span></a></div>

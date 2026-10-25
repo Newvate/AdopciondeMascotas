@@ -1,7 +1,9 @@
 const petGrid = document.querySelector('#pet-grid');
 const searchInput = document.querySelector('#pet-search');
 const noResults = document.querySelector('#no-results');
-const catalogStatus = document.querySelector('#catalog-status');
+const resultsCount = document.querySelector('#results-count');
+const clearSearch = document.querySelector('#clear-search');
+const sortSelect = document.querySelector('#pet-sort');
 const breedFilter = document.querySelector('#breed-filter');
 const locationFilter = document.querySelector('#location-filter');
 const ageFilter = document.querySelector('#age-filter');
@@ -46,6 +48,8 @@ function renderPets() {
     const matchesFavorite = !favoritesOnly.checked || favoriteIds.has(String(pet.id));
     return matchesType && matchesSearch && matchesBreed && matchesLocation && matchesAge && matchesSize && matchesFavorite;
   });
+  if (sortSelect.value === 'name') shown.sort((a, b) => a.nombre.localeCompare(b.nombre, 'es'));
+  if (sortSelect.value === 'young') shown.sort((a, b) => Number(a.edadMeses) - Number(b.edadMeses));
 
   petGrid.innerHTML = shown.map((pet, index) => {
     const id = String(pet.id);
@@ -59,7 +63,8 @@ function renderPets() {
     </article>`;
   }).join('');
   noResults.hidden = shown.length !== 0;
-  catalogStatus.textContent = `${shown.length} ${shown.length === 1 ? 'compañero disponible' : 'compañeros disponibles'}`;
+  resultsCount.textContent = `${shown.length} ${shown.length === 1 ? 'mascota' : 'mascotas'}`;
+  clearSearch.hidden = !searchInput.value;
 }
 
 async function loadPets() {
@@ -73,7 +78,7 @@ async function loadPets() {
     filterButtons[0].innerHTML = `Todos <span>${String(pets.length).padStart(2, '0')}</span>`;
     renderPets();
   } catch (error) {
-    catalogStatus.textContent = 'No pudimos cargar las mascotas. Actualiza la página para intentarlo de nuevo.';
+    resultsCount.textContent = 'No se pudo cargar el catálogo';
     petGrid.innerHTML = '';
   }
 }
@@ -87,9 +92,14 @@ filterButtons.forEach((button) => button.addEventListener('click', () => {
   });
   renderPets();
 }));
-[searchInput, breedFilter, locationFilter, ageFilter, sizeFilter, favoritesOnly].forEach((control) => {
+[searchInput, breedFilter, locationFilter, ageFilter, sizeFilter, favoritesOnly, sortSelect].forEach((control) => {
   control.addEventListener('input', renderPets);
   control.addEventListener('change', renderPets);
+});
+clearSearch.addEventListener('click', () => {
+  searchInput.value = '';
+  renderPets();
+  searchInput.focus();
 });
 
 petGrid.addEventListener('click', (event) => {
