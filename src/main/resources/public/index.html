@@ -11,6 +11,25 @@
     @media(max-width:760px){.app{grid-template-columns:1fr}.sidebar{height:auto;position:relative;padding:12px 17px;border-right:0;border-bottom:1px solid var(--line);flex-direction:row;align-items:center;justify-content:space-between}.brand{padding:0;font-size:17px}.brand-mark{width:34px;height:34px}.nav{display:flex;gap:2px}.nav a{padding:9px;font-size:0}.nav .ico{font-size:17px}.side-note{display:none}.topbar{height:54px;padding:0 19px}.top-actions .welcome{display:none}.content{padding:29px 19px 50px}.hero{align-items:flex-start}.stats{padding:9px 11px}.hero h1{font-size:31px}.hero p.sub{font-size:13px;max-width:340px}.layout{grid-template-columns:1fr}.filters{position:relative;top:auto;display:grid;grid-template-columns:repeat(2,1fr);gap:0 12px;padding:15px}.filter-heading{grid-column:1/-1;margin-bottom:10px}.reset{align-self:end;margin-bottom:14px}.cards{grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}.photo{height:145px}.card-info{padding:11px}.card h3{font-size:15px}.contact{margin-top:45px;padding:25px;grid-template-columns:1fr;gap:20px}}
     @media(max-width:460px){.cards{grid-template-columns:1fr 1fr}.photo{height:120px}.card-info{padding:9px}.tag{font-size:10px;padding:4px 7px}.place{font-size:11px}.hero{display:block}.stats{display:inline-block;margin-top:16px}.filters{grid-template-columns:1fr 1fr}.contact{padding:21px}.contact-form{grid-template-columns:1fr}.contact-form textarea{grid-column:auto}.modal-card{grid-template-columns:1fr;max-width:400px;max-height:90vh;overflow:auto}.modal-card img{height:215px;min-height:0}.modal-body{padding:22px}}
   </style>
+  <style>
+    :root{--ink:#f4f4ef;--muted:#9a9da4;--green:#d5ff45;--green2:#1b2110;--paper:#090a0b;--line:#2a2c31;--orange:#ff9d64}
+    body{background:var(--paper);color:var(--ink)}
+    .sidebar,.topbar{background:#0e0f11;border-color:#292b2f}
+    .brand{color:var(--ink)}.brand-mark{background:#d5ff4520;color:var(--green)}.brand em{color:var(--green)}
+    .nav a{color:#a3a5ab}.nav a:hover,.nav a.active{background:#d5ff4514;color:var(--green)}
+    .side-note{background:#17191c;color:#aeb0b5;border:1px solid #292b2f}.side-note b{color:var(--pink,#ff74b8)}
+    .crumb{color:#92949a}.crumb b{color:#f3f3ee}.top-actions{color:#a1a3a8}.avatar{background:#d5ff4520;color:var(--green)}
+    .eyebrow{color:#ff9d64}.hero h1{color:#f5f5ef;background:linear-gradient(92deg,#f5f5ef 3%,#d5ff45 55%,#ff74b8 100%);background-clip:text;-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+    .hero p.sub{color:#a2a4aa}.stats{background:#121315;border-color:#2b2d31;color:#a3a5aa}.stats strong{color:var(--green)}
+    .count{color:#a1a3a8}.count b{color:#f4f4ef}.sort{color:#d2d3d5}
+    .card,.filters{background:#131416;border-color:#292b2f}.card:hover{box-shadow:0 14px 28px #0008;border-color:#46494e}
+    .photo{background:#222428}.card h3{color:#f3f3ee}.gender,.place{color:#a2a4a9}.tag{background:#232529;color:#c8c9cc}.card-bottom{border-color:#2b2d31}.detail-btn,.filter-heading span{color:var(--green)}
+    .filter-heading h2{color:#f1f1ed}.field label{color:#c2c3c6}.field select,.field input,.field textarea{background:#1a1b1e;border-color:#36383d;color:#f1f1ed}.field select:focus,.field input:focus,.field textarea:focus{border-color:var(--green);box-shadow:0 0 0 3px #d5ff4515}.reset{background:#d5ff4518;color:var(--green)}.reset:hover{background:#d5ff4528}
+    .empty{border-color:#3a3c40;color:#a0a2a7}.empty strong{color:#f4f4ef}
+    .contact{background:#151719;border:1px solid #2a2c30}.contact h2{color:#f4f4ef}.contact p{color:#a4a6ab}.contact-form input,.contact-form textarea{background:#1d1f22;border-color:#37393d;color:#f4f4ef}.contact-form input::placeholder,.contact-form textarea::placeholder{color:#85878d}.contact-form input:focus,.contact-form textarea:focus{outline:1px solid var(--green)}.contact-form button,.adopt-btn{background:var(--green);color:#12140b}.contact-form button:hover,.adopt-btn:hover{background:#e2ff7b}
+    .toast{background:#d5ff45;color:#13150b}.modal{background:#000b}.modal-card{background:#151619;border:1px solid #36383c}.modal-body h2{color:#f4f4ef}.modal-body p{color:#a5a7ac}.close{background:#25272a;color:#f1f1ee}.footer{color:#85878c;border-top:1px solid #24262a}
+    a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid #ff74b8;outline-offset:3px}
+  </style>
 </head>
 <body>
 <div class="app">
