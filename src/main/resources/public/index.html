@@ -10,6 +10,79 @@
     @media(max-width:1100px){.cards{grid-template-columns:repeat(2,minmax(0,1fr))}.content{padding-left:30px;padding-right:30px}.topbar{padding:0 30px}}
     @media(max-width:760px){.app{grid-template-columns:1fr}.sidebar{height:auto;position:relative;padding:12px 17px;border-right:0;border-bottom:1px solid var(--line);flex-direction:row;align-items:center;justify-content:space-between}.brand{padding:0;font-size:17px}.brand-mark{width:34px;height:34px}.nav{display:flex;gap:2px}.nav a{padding:9px;font-size:0}.nav .ico{font-size:17px}.side-note{display:none}.topbar{height:54px;padding:0 19px}.top-actions .welcome{display:none}.content{padding:29px 19px 50px}.hero{align-items:flex-start}.stats{padding:9px 11px}.hero h1{font-size:31px}.hero p.sub{font-size:13px;max-width:340px}.layout{grid-template-columns:1fr}.filters{position:relative;top:auto;display:grid;grid-template-columns:repeat(2,1fr);gap:0 12px;padding:15px}.filter-heading{grid-column:1/-1;margin-bottom:10px}.reset{align-self:end;margin-bottom:14px}.cards{grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}.photo{height:145px}.card-info{padding:11px}.card h3{font-size:15px}.contact{margin-top:45px;padding:25px;grid-template-columns:1fr;gap:20px}}
     @media(max-width:460px){.cards{grid-template-columns:1fr 1fr}.photo{height:120px}.card-info{padding:9px}.tag{font-size:10px;padding:4px 7px}.place{font-size:11px}.hero{display:block}.stats{display:inline-block;margin-top:16px}.filters{grid-template-columns:1fr 1fr}.contact{padding:21px}.contact-form{grid-template-columns:1fr}.contact-form textarea{grid-column:auto}.modal-card{grid-template-columns:1fr;max-width:400px;max-height:90vh;overflow:auto}.modal-card img{height:215px;min-height:0}.modal-body{padding:22px}}
+    body{position:relative;isolation:isolate;background:linear-gradient(135deg,#fbf8f0 0%,#f2f5ed 48%,#f9eee5 100%);background-attachment:fixed}
+    body::before,body::after{content:"";position:fixed;inset:0;pointer-events:none}
+    body::before{z-index:-1;background:radial-gradient(ellipse at 15% 18%,#dbead5a8 0,transparent 34%),radial-gradient(ellipse at 83% 12%,#f4d8c59c 0,transparent 31%),radial-gradient(ellipse at 75% 82%,#dce9d69c 0,transparent 36%);animation:ambient-drift 22s ease-in-out infinite alternate}
+    body::after{z-index:-1;opacity:.22;background-image:radial-gradient(#789078 0.7px,transparent 0.7px);background-size:22px 22px;mask-image:linear-gradient(135deg,#000,transparent 65%)}
+    @keyframes ambient-drift{from{transform:scale(1) translate3d(-1%,0,0)}to{transform:scale(1.08) translate3d(1%,1%,0)}}
+    .app{position:relative}
+    .sidebar,.topbar{background:#fbfaf6d9;backdrop-filter:blur(14px)}
+    .sidebar{box-shadow:8px 0 35px #344a3508}
+    .topbar{position:relative}
+    .hero{position:relative;isolation:isolate;overflow:hidden;margin-bottom:31px;padding:34px 37px;border:1px solid #ffffff40;border-radius:24px;background:linear-gradient(118deg,#365943 0%,#547d5e 58%,#78946b 100%);box-shadow:0 20px 50px #34553c24;animation:hero-arrive .75s cubic-bezier(.2,.75,.25,1) both}
+    .hero::before{content:"";position:absolute;z-index:-1;width:330px;height:330px;right:12%;top:-225px;border:1px solid #ffffff2c;border-radius:50%;box-shadow:0 0 0 35px #ffffff0c,0 0 0 72px #ffffff08}
+    .hero::after{content:"🐾";position:absolute;z-index:-1;right:5%;top:50%;color:#ffffff24;font-size:clamp(75px,12vw,145px);line-height:1;transform:translateY(-50%) rotate(-16deg);filter:none}
+    .hero>div{position:relative}
+    .hero .eyebrow{color:#f7c49e}
+    .hero h1{color:#fff}
+    .hero p.sub{color:#e1eadf}
+    .hero .stats{border:1px solid #ffffff42;background:#ffffff18;color:#e4ecdf;backdrop-filter:blur(8px)}
+    .hero .stats strong{color:#fff}
+    @keyframes hero-arrive{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+    .cards{perspective:1000px}
+    .card{border-color:#ffffffc9;box-shadow:0 8px 24px #314b3910;animation:card-arrive .55s cubic-bezier(.2,.75,.25,1) both}
+    .card:nth-child(2){animation-delay:.06s}.card:nth-child(3){animation-delay:.12s}.card:nth-child(4){animation-delay:.18s}.card:nth-child(5){animation-delay:.24s}.card:nth-child(6){animation-delay:.3s}
+    .card:hover{transform:translateY(-6px) scale(1.015);box-shadow:0 18px 35px #344a3520}
+    .photo{transition:transform .5s cubic-bezier(.2,.75,.25,1)}
+    .card:hover .photo{transform:scale(1.055)}
+    @keyframes card-arrive{from{opacity:0;transform:translateY(12px) scale(.985)}to{opacity:1;transform:translateY(0) scale(1)}}
+    .filters{border-color:#ffffffd9;background:#ffffffd9;box-shadow:0 12px 32px #344a3510;backdrop-filter:blur(12px);transition:transform .25s,box-shadow .25s}
+    .filters:hover{transform:translateY(-2px);box-shadow:0 16px 38px #344a3517}
+    .contact{position:relative;overflow:hidden;border:1px solid #ffffffaa;background:linear-gradient(125deg,#e4eee1 0%,#f0eee2 57%,#f6e6d9 100%);box-shadow:0 16px 40px #344a3510}
+    .contact::after{content:"";position:absolute;right:-60px;top:-105px;width:230px;height:230px;border:1px solid #78907827;border-radius:50%;box-shadow:0 0 0 24px #7890780b,0 0 0 50px #78907808;pointer-events:none}
+    .contact>div{position:relative;z-index:1}
+    .nav a,.detail-btn,.reset,.contact-form button,.adopt-btn{transition:transform .2s,background-color .2s,box-shadow .2s}
+    .nav a:hover,.detail-btn:hover,.reset:hover,.contact-form button:hover,.adopt-btn:hover{transform:translateY(-2px)}
+    :focus-visible{outline:3px solid #dd875d;outline-offset:3px}
+    @media(max-width:760px){.hero{padding:27px 23px;border-radius:20px}.hero::before{right:-30%;top:-240px}.filters:hover{transform:none}}
+    @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}}
+    :root{--ink:#20354c;--muted:#657b91;--green:#087f79;--green2:#dff8f1;--paper:#f4f8ff;--line:#dfe9f5;--orange:#ff765d}
+    body{background:linear-gradient(135deg,#f4f8ff 0%,#effcf8 48%,#fff3ec 100%)}
+    body::before{background:radial-gradient(ellipse at 12% 17%,#a5f0d580 0,transparent 34%),radial-gradient(ellipse at 85% 9%,#b5ccff96 0,transparent 32%),radial-gradient(ellipse at 76% 83%,#ffd0b780 0,transparent 37%)}
+    body::after{background-image:radial-gradient(#5680b0 0.7px,transparent 0.7px);opacity:.15}
+    .sidebar,.topbar{background:#ffffffd9}
+    .brand-mark{background:linear-gradient(145deg,#d5fff1,#dce7ff);color:#087f79}
+    .brand em{color:#087f79}
+    .nav a:hover,.nav a.active{background:linear-gradient(110deg,#dff8f1,#e7eeff);color:#087f79}
+    .side-note{background:linear-gradient(145deg,#e1faf1,#fef0e7)}
+    .hero{background:linear-gradient(112deg,#3158d5 0%,#287fce 48%,#13a995 100%);box-shadow:0 22px 54px #3268c53b}
+    .hero .eyebrow{color:#ffe0a9}
+    .hero .stats{border-color:#ffffff55;background:#ffffff20}
+    .cards{gap:20px}
+    .card{border:1px solid #ffffff;background:#fff;border-radius:22px;box-shadow:0 13px 30px #264b761a,0 3px 8px #264b760c;transition:transform .3s cubic-bezier(.2,.75,.25,1),box-shadow .3s}
+    .card:hover{transform:translateY(-8px) scale(1.015);box-shadow:0 23px 42px #264b7629,0 6px 14px #264b7614}
+    .photo{height:190px}
+    .card-info{padding:16px 17px 17px}
+    .card h3{color:#20354c;font-size:18px}
+    .meta{gap:8px}
+    .tag{display:inline-flex;align-items:center;gap:5px;border-radius:999px;padding:6px 11px;font-size:11px;font-weight:700;color:#34516d;background:#edf3fa}
+    .tag-type{color:#087f79;background:#dff8f1}
+    .tag-age{color:#a64d33;background:#fff0e8}
+    .tag-city{color:#3655bd;background:#e9edff}
+    .card-bottom{border-color:#e9eff6;padding-top:13px}
+    .detail-btn{display:inline-flex;align-items:center;gap:5px;padding:9px 13px;border-radius:999px;background:#ff765d;color:#fff;font-size:12px;font-weight:700;box-shadow:0 5px 12px #ff765d38}
+    .detail-btn:hover{background:#ed5f49;color:#fff;text-decoration:none;box-shadow:0 8px 18px #ff765d59}
+    .filters{border:1px solid #ffffff;background:#ffffffed;border-radius:20px;box-shadow:0 14px 34px #264b7615}
+    .reset{background:#e7edff;color:#3655bd}
+    .reset:hover{background:#d8e2ff}
+    .contact{background:linear-gradient(125deg,#dcf8ed 0%,#e8efff 58%,#fff0e5 100%);border-radius:26px;box-shadow:0 18px 40px #264b7615}
+    .contact-form button,.adopt-btn{background:linear-gradient(110deg,#ff765d,#f45570);box-shadow:0 7px 17px #ff765d3d}
+    .contact-form button:hover,.adopt-btn:hover{background:linear-gradient(110deg,#ed5f49,#dc3e5b);box-shadow:0 10px 22px #ff765d52}
+    .empty{border-color:#a9bdf3;background:#ffffff9c}
+    .modal-card{border-radius:24px}
+    .gender{color:#ff765d}
+    @media(max-width:760px){.photo{height:155px}.cards{gap:13px}}
+    @media(max-width:460px){.photo{height:125px}.card-info{padding:10px}.detail-btn{padding:8px 9px;font-size:11px}}
   </style>
 </head>
 <body>
@@ -51,7 +124,7 @@
     $('#resultCount').textContent=`${shown.length} ${shown.length===1?'mascota':'mascotas'}`;
     $('#availableCount').textContent=pets.length;
     if(!shown.length){cards.innerHTML='<div class="empty"><strong>No encontramos mascotas con esos filtros</strong>Prueba cambiando algún criterio para ver más amigos.</div>';return;}
-    cards.innerHTML=shown.map(p=>`<article class="card"><img class="photo" src="${escapeHtml(p.imagen)}" alt="${escapeHtml(p.nombre)}, ${escapeHtml(p.tipo.toLowerCase())} en adopción" loading="lazy"><div class="card-info"><div class="card-name"><h3>${escapeHtml(p.nombre)}</h3><span class="gender">${p.sexo==='Hembra'?'♀':'♂'}</span></div><div class="meta"><span class="tag">${escapeHtml(p.tipo)}</span><span class="tag">${escapeHtml(p.edad)}</span></div><div class="card-bottom"><span class="place">⌖ ${escapeHtml(p.ubicacion)}</span><button class="detail-btn" data-id="${p.id}">Ver detalles&nbsp; ↗</button></div></div></article>`).join('');
+    cards.innerHTML=shown.map(p=>`<article class="card"><img class="photo" src="${escapeHtml(p.imagen)}" alt="${escapeHtml(p.nombre)}, ${escapeHtml(p.tipo.toLowerCase())} en adopción" loading="lazy"><div class="card-info"><div class="card-name"><h3>${escapeHtml(p.nombre)}</h3><span class="gender">${p.sexo==='Hembra'?'♀':'♂'}</span></div><div class="meta"><span class="tag tag-type">${p.tipo==='Perro'?'🐶':'🐱'} ${escapeHtml(p.tipo)}</span><span class="tag tag-age">🎂 ${escapeHtml(p.edad)}</span></div><div class="card-bottom"><span class="tag tag-city">📍 ${escapeHtml(p.ubicacion)}</span><button class="detail-btn" data-id="${p.id}">Ver detalles&nbsp; ↗</button></div></div></article>`).join('');
   }
   function openPet(id){const p=pets.find(x=>x.id===Number(id));if(!p)return;$('#modalImage').src=p.imagen;$('#modalImage').alt=p.nombre;$('#modalName').textContent=p.nombre;$('#modalDescription').textContent=p.descripcion;$('#modalTags').innerHTML=[p.tipo,p.edad,p.ubicacion,p.sexo].map(x=>`<span class="tag">${escapeHtml(x)}</span>`).join('');$('#modal').classList.add('open');$('#closeModal').focus();}
   cards.addEventListener('click',e=>{const b=e.target.closest('[data-id]');if(b)openPet(b.dataset.id)});
