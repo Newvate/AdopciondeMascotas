@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actions>
+    <action>
+        <actionName>run</actionName>
+        <displayName>Run Hogar Fiel</displayName>
+        <goals>
+            <goal>process-classes</goal>
+            <goal>exec:java</goal>
+        </goals>
+        <properties>
+            <exec.mainClass>com.mycompany.adopciondemascotas.AdopciondeMascotas</exec.mainClass>
+        </properties>
+    </action>
+</actions>
