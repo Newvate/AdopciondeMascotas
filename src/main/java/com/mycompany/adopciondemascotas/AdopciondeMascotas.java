@@ -45,14 +45,31 @@ public class AdopciondeMascotas {
                 respond(exchange, 405, "text/plain; charset=utf-8", "Método no permitido");
                 return;
             }
-            try (var in = AdopciondeMascotas.class.getResourceAsStream("/public/index.html")) {
-                if (in == null) { respond(exchange, 500, "text/plain; charset=utf-8", "No se encontró la página web."); return; }
-                respond(exchange, 200, "text/html; charset=utf-8", new String(in.readAllBytes(), StandardCharsets.UTF_8));
-            } catch (IOException e) { respond(exchange, 500, "text/plain; charset=utf-8", "Error al cargar la página."); }
+            String path = exchange.getRequestURI().getPath();
+            if (path.equals("/")) path = "/index.html";
+            String contentType = switch (path) {
+                case "/index.html" -> "text/html; charset=utf-8";
+                case "/styles.css" -> "text/css; charset=utf-8";
+                case "/app.js" -> "application/javascript; charset=utf-8";
+                default -> null;
+            };
+            if (contentType == null) {
+                respond(exchange, 404, "text/plain; charset=utf-8", "No encontrado");
+                return;
+            }
+            try (var in = AdopciondeMascotas.class.getResourceAsStream("/public" + path)) {
+                if (in == null) { respond(exchange, 404, "text/plain; charset=utf-8", "No se encontró el recurso."); return; }
+                byte[] bytes = in.readAllBytes();
+                exchange.getResponseHeaders().set("Content-Type", contentType);
+                exchange.getResponseHeaders().set("X-Content-Type-Options", "nosniff");
+                exchange.getResponseHeaders().set("Cache-Control", "no-store");
+                exchange.sendResponseHeaders(200, bytes.length);
+                try (var out = exchange.getResponseBody()) { out.write(bytes); }
+            } catch (IOException e) { respond(exchange, 500, "text/plain; charset=utf-8", "Error al cargar el recurso."); }
         });
         server.setExecutor(null);
         server.start();
-        System.out.println("Hogar Fiel está disponible en http://localhost:" + port);
+        System.out.println("Huellas está disponible en http://localhost:" + port);
     }
 
     private static void respond(HttpExchange exchange, int status, String contentType, String body) throws IOException {
