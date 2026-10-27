@@ -59,7 +59,7 @@ function renderPets() {
     const pronoun = normalize(pet.sexo) === 'hembra' ? 'Conocerla' : 'Conocerlo';
     return `<article class="pet-card">
       <div class="pet-photo"><img src="${escapeHtml(pet.imagen)}" alt="${escapeHtml(`${pet.nombre}, ${pet.tipo.toLowerCase()}`)}" loading="lazy"><span class="pet-tag ${tagClass}">EN ADOPCIÓN</span><button class="favorite" type="button" aria-label="${saved ? 'Quitar de favoritos' : 'Guardar en favoritos'} a ${escapeHtml(pet.nombre)}" aria-pressed="${saved}" data-favorite="${escapeHtml(id)}">${saved ? '♥' : '♡'}</button></div>
-      <div class="pet-info"><div class="pet-title"><h3>${escapeHtml(pet.nombre)}</h3><span class="pet-age">${escapeHtml(pet.edad)}</span></div><p>${escapeHtml(pet.raza)} <span>·</span> ${escapeHtml(pet.sexo)}</p><p class="pet-description">${escapeHtml(pet.descripcion || '')}</p><div class="pet-footer"><span class="pet-location">⌖ ${escapeHtml(pet.ubicacion)}</span><button class="meet-button" type="button" data-meet="${escapeHtml(id)}">${pronoun} <span>↗</span></button></div></div>
+      <div class="pet-info"><div class="pet-title"><h3>${escapeHtml(pet.nombre)}</h3><span class="pet-age">${escapeHtml(pet.edad)}</span></div><span class="pet-code">Código ${escapeHtml(pet.codigo)}</span><p>${escapeHtml(pet.raza)} <span>·</span> ${escapeHtml(pet.sexo)}</p><p class="pet-description">${escapeHtml(pet.descripcion || '')}</p><div class="pet-footer"><span class="pet-location">⌖ ${escapeHtml(pet.ubicacion)}</span><button class="meet-button" type="button" data-meet="${escapeHtml(id)}">${pronoun} <span>↗</span></button></div></div>
     </article>`;
   }).join('');
   noResults.hidden = shown.length !== 0;
